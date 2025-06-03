@@ -5,15 +5,16 @@ services:
     image: mysql:8.0
     restart: always
     environment:
-      MYSQL_ROOT_PASSWORD: rootpassword
-      MYSQL_DATABASE: project_web
-      MYSQL_USER: user
-      MYSQL_PASSWORD: password
+      MYSQL_ROOT_PASSWORD: qggFeXDcMNWFCTRBLNMOdfuzzjqbELTR
+      MYSQL_DATABASE: railway
+      MYSQL_USER: root
+      MYSQL_PASSWORD: qggFeXDcMNWFCTRBLNMOdfuzzjqbELTR
     ports:
       - "3306:3306"
     volumes:
       - db_data:/var/lib/mysql
       - ./mysql-init:/docker-entrypoint-initdb.d
+
   app:
     build: .
     ports:
@@ -23,9 +24,9 @@ services:
     environment:
       DB_HOST: db
       DB_PORT: 3306
-      DB_USERNAME: user
-      DB_PASSWORD: password
-      DB_NAME: project_web
+      DB_USERNAME: root
+      DB_PASSWORD: qggFeXDcMNWFCTRBLNMOdfuzzjqbELTR
+      DB_NAME: railway
 
 volumes:
   db_data:
