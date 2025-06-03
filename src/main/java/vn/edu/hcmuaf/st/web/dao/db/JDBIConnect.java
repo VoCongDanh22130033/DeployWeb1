@@ -1,18 +1,18 @@
 package vn.edu.hcmuaf.st.web.dao.db;
 
 import com.mysql.cj.jdbc.MysqlDataSource;
-import jakarta.servlet.ServletContextEvent;
 import org.jdbi.v3.core.Jdbi;
 
-import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class JDBIConnect {
 
-//    static String url = "jdbc:mysql://" + DBProperties.host() + ":" + DBProperties.port() + "/" + DBProperties.dbname() + "?" + DBProperties.option();
-    static String url = "jdbc:mysql://" + DBProperties.host() + ":" + DBProperties.port() + "/" + DBProperties.dbname() + "?" + DBProperties.option();
-
     static Jdbi jdbi;
+
+    // Hàm tạo url mỗi lần gọi
+    private static String getUrl() {
+        return "jdbc:mysql://" + DBProperties.host() + ":" + DBProperties.port() + "/" + DBProperties.dbname() + "?" + DBProperties.option();
+    }
 
     public static Jdbi get() {
         if (jdbi == null) {
@@ -28,7 +28,7 @@ public class JDBIConnect {
 
     private static void makeConnect() throws RuntimeException {
         MysqlDataSource src = new MysqlDataSource();
-        src.setURL(url);
+        src.setURL(getUrl());
         src.setUser(DBProperties.username());
         src.setPassword(DBProperties.password());
 
@@ -41,16 +41,6 @@ public class JDBIConnect {
 
         jdbi = Jdbi.create(src);
     }
-
-//không cần thiết
-//    public void contextDestroyed(ServletContextEvent sce) {
-//        try {
-//            java.sql.DriverManager.deregisterDriver(DriverManager.getDrivers().nextElement());
-//            com.mysql.cj.jdbc.AbandonedConnectionCleanupThread.checkedShutdown();
-//        } catch (SQLException e) {
-//            e.printStackTrace();
-//        }
-//    }
 
     public static void main(String[] args) {
         Jdbi j = get();
