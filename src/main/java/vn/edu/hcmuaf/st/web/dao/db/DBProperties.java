@@ -5,54 +5,37 @@ import java.io.InputStream;
 import java.util.Properties;
 
 public class DBProperties {
-    private static Properties prop = new Properties();
-
-    static {
-        try (InputStream in = DBProperties.class.getClassLoader().getResourceAsStream("db.properties")) {
-            if (in != null) {
-                prop.load(in);
-            } else {
-                System.err.println("Không tìm thấy file db.properties");
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    private static String getEnvOrProp(String envKey, String propKey) {
-        String envVal = System.getenv(envKey);
-        if (envVal != null && !envVal.isEmpty()) {
-            return envVal;
-        }
-        return prop.getProperty(propKey);
-    }
-
     public static String host() {
-        return getEnvOrProp("DB_HOST", "db.host");
+        String env = System.getenv("DB_HOST");
+        return (env != null) ? env : "localhost";
     }
 
     public static int port() {
-        String portStr = getEnvOrProp("DB_PORT", "db.port");
+        String env = System.getenv("DB_PORT");
         try {
-            return Integer.parseInt(portStr);
+            return (env != null) ? Integer.parseInt(env) : 3306;
         } catch (NumberFormatException e) {
-            return 3306; // default port
+            return 3306;
         }
     }
 
     public static String username() {
-        return getEnvOrProp("DB_USER", "db.username");
+        String env = System.getenv("DB_USERNAME");
+        return (env != null) ? env : "root";
     }
 
     public static String password() {
-        return getEnvOrProp("DB_PASS", "db.password");
+        String env = System.getenv("DB_PASSWORD");
+        return (env != null) ? env : "";
     }
 
     public static String dbname() {
-        return getEnvOrProp("DB_NAME", "db.dbname");
+        String env = System.getenv("DB_NAME");
+        return (env != null) ? env : "project_web";
     }
 
     public static String option() {
-        return getEnvOrProp("DB_OPTION", "db.option");
+        return "useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC";
     }
 }
+
