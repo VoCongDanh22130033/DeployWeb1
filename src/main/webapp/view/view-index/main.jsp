@@ -1,4 +1,12 @@
-
+<%--<%@ page import="vn.edu.hcmuaf.st.web.entity.Account" %>--%>
+<%--<%--%>
+<%--    Account user = (Account) session.getAttribute("user");--%>
+<%--    if (user == null) {--%>
+<%--        // Nếu không có thông tin người dùng trong session, chuyển hướng đến trang đăng nhập--%>
+<%--        response.sendRedirect(request.getContextPath() + "/view/view-account/login.jsp");--%>
+<%--        return;--%>
+<%--    }--%>
+<%--%>--%>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
@@ -17,7 +25,7 @@
 <section class="section-intro padding-y-sm">
     <div class="container">
         <div class="intro-banner-wrap">
-            <img src="https://file.hstatic.net/1000290074/file/artboard_1.jpg" class="img-fluid rounded">
+            <img src="images/banners/1.jpg" class="img-fluid rounded">
         </div>
     </div>
 </section>
@@ -27,6 +35,8 @@
 <section class="section-name padding-y-sm my-4">
     <div class="container">
         <header class="section-heading">
+            <a href="${pageContext.request.contextPath}/product"
+               class="btn btn-outline-primary float-right">Xem tất cả</a>
             <h3 class="section-title">Các Sản Phẩm Hot</h3>
         </header>
 
@@ -85,8 +95,8 @@
 <section class="section-name padding-y-sm my-4">
     <div class="container">
         <header class="section-heading">
-<%--            <a href="${pageContext.request.contextPath}/view/view-product/store.jsp"--%>
-<%--               class="btn btn-outline-primary float-right">Xem tất cả</a>--%>
+            <a href="${pageContext.request.contextPath}/view/view-product/store.jsp"
+               class="btn btn-outline-primary float-right">Xem tất cả</a>
             <h3 class="section-title">Các Sản Phẩm Giảm Giá</h3>
         </header>
 
@@ -145,7 +155,7 @@
 <section class="section-name padding-y-sm my-4">
     <div class="container">
         <header class="section-heading">
-            <a href="${pageContext.request.contextPath}/all-boy-or-girl?boy_or_girl=1&page=1&pageSize=9" class="btn btn-outline-primary float-right">Xem tất cả</a>
+            <a href="${pageContext.request.contextPath}/view/view-product/store.jsp" class="btn btn-outline-primary float-right">Xem tất cả</a>
             <h3 class="section-title">Thời Trang Bé Trai</h3>
         </header>
 
@@ -222,7 +232,7 @@
 <section class="section-name padding-y-sm my-4">
     <div class="container">
         <header class="section-heading">
-            <a href="${pageContext.request.contextPath}/all-boy-or-girl?boy_or_girl=2&page=1&pageSize=9"
+            <a href="${pageContext.request.contextPath}/view/view-product/store.jsp"
                class="btn btn-outline-primary float-right">Xem tất cả</a>
             <h3 class="section-title">Thời Trang Bé Gái</h3>
         </header>

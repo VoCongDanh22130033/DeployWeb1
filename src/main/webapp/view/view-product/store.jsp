@@ -72,6 +72,104 @@
                             <!-- card-body.// -->
                         </div>
                     </article>
+                    <!-- filter-group  .// -->
+                    <article class="filter-group">
+                        <header class="card-header">
+                            <a href="#" data-toggle="collapse" data-target="#collapse_3"
+                               aria-expanded="true" class=""> <i
+                                    class="icon-control fa fa-chevron-down"></i>
+                                <h6 class="title">Giảm Giá</h6>
+                            </a>
+                        </header>
+                        <div class="filter-content collapse show" id="" style="">
+                            <div class="card-body">
+                                <div class="form-row">
+                                    <div class="form-group col-md-6">
+                                        <!-- <input class="form-control" placeholder="$0" type="number"> -->
+                                        <!-- <input class="form-control" placeholder="$0" type="number"> -->
+                                        <!-- <input class="form-control" placeholder="$0" type="number"> -->
+                                        <select class="mr-2 form-control">
+                                            <option value="50">0->10%</option>
+                                            <option value="100">10->20%</option>
+                                            <option value="100">20->30%</option>
+                                        </select>
+                                    </div>
+
+                                </div>
+                                <!-- form-row.// -->
+                                <button class="btn btn-block btn-primary">Áp Dụng</button>
+                            </div>
+                            <!-- card-body.// -->
+                        </div>
+                    </article>
+                    <!-- filter-group .// -->
+                    <article class="filter-group">
+                        <header class="card-header">
+                            <a href="#" data-toggle="collapse" data-target="#collapse_4"
+                               aria-expanded="true" class=""> <i
+                                    class="icon-control fa fa-chevron-down"></i>
+                                <h6 class="title">Kích Cỡ</h6>
+                            </a>
+                        </header>
+                        <div class="filter-content collapse show" id="collapse_4"
+                             style="">
+                            <div class="card-body">
+                                <label class="checkbox-btn"> <input type="checkbox">
+                                    <span class="btn btn-light"> 2 Tuổi </span>
+                                </label> <label class="checkbox-btn"> <input type="checkbox">
+                                <span class="btn btn-light"> 3 Tuổi </span>
+                            </label> <label class="checkbox-btn"> <input type="checkbox">
+                                <span class="btn btn-light"> 4 Tuổi </span>
+                            </label> <label class="checkbox-btn"> <input type="checkbox">
+                                <span class="btn btn-light">5 Tuổi </span>
+                            </label>
+                            </div>
+                            <!-- card-body.// -->
+                        </div>
+                    </article>
+                    <!-- filter-group .// -->
+                    <article class="filter-group">
+                        <header class="card-header">
+                            <a href="#" data-toggle="collapse" data-target="#collapse_3"
+                               aria-expanded="true" class=""> <i
+                                    class="icon-control fa fa-chevron-down"></i>
+                                <h6 class="title">Giá</h6>
+                            </a>
+                        </header>
+                        <div class="filter-content collapse show" id="collapse_3"
+                             style="">
+                            <div class="card-body">
+                                <div class="form-row">
+                                    <div class="form-group col-md-6">
+                                        <label>Nhỏ Nhất</label>
+                                        <!-- <input class="form-control" placeholder="$0" type="number"> -->
+                                        <select class="mr-2 form-control">
+                                            <option value="50">50.000đ</option>
+                                            <option value="100">100.000đ</option>
+                                            <option value="150">200.000đ</option>
+                                            <option value="200">300.000đ</option>
+                                            <option value="500">400.000đ</option>
+                                            <option value="1000">500.000đ</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group text-right col-md-6">
+                                        <label>Lớn Nhất</label> <select class="mr-2 form-control">
+                                        <option value="50">100.000đ</option>
+                                        <option value="100">300.000đ</option>
+                                        <option value="150">400.000đ</option>
+                                        <option value="200">500.000đ</option>
+                                        <option value="500">600.000đ</option>
+                                        <option value="1000">700.000đ</option>
+                                    </select>
+                                    </div>
+                                </div>
+                                <!-- form-row.// -->
+                                <button class="btn btn-block btn-primary">Áp Dụng</button>
+                            </div>
+                            <!-- card-body.// -->
+                        </div>
+                    </article>
+                    <!-- filter-group .// -->
                 </div>
                 <!-- card.// -->
             </aside>

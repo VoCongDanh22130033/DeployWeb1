@@ -1,25 +1,19 @@
-
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 
-<!DOCTYPE HTML>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet"
-          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
-</head>
+<%@ include file="/view/view-index/header.jsp" %>
+
+<html>
+
 <style>
     .form-control:focus {
         box-shadow: none;
         border-color: #ced4da; /* hoặc bất kỳ màu border mặc định nào */
     }
 </style>
-<body>
-<%@ include file="/view/view-index/header.jsp" %>
+
 <section class="section-content padding-y bg">
     <div class="container">
 
@@ -206,6 +200,7 @@
 
     </div>
 </section>
+
 <script>
     document.querySelectorAll('.btn-update-quantity').forEach(button => {
         button.addEventListener('click', function () {
@@ -265,5 +260,7 @@
     });
 </script>
 <script src="${pageContext.request.contextPath}/js/coupon.js"></script>
-</body>
+
+
+<%@ include file="/view/view-index/footer.jsp" %>
 </html>
