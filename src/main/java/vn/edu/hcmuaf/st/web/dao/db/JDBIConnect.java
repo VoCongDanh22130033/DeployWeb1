@@ -27,10 +27,17 @@ public class JDBIConnect {
     }
 
     private static void makeConnect() throws RuntimeException {
+        String url = getUrl();
+        String user = DBProperties.username();
+        String pass = DBProperties.password();
+        System.out.println("Connecting to DB with URL: " + url);
+        System.out.println("DB User: " + user);
+        // Don't print password for bảo mật
+
         MysqlDataSource src = new MysqlDataSource();
-        src.setURL(getUrl());
-        src.setUser(DBProperties.username());
-        src.setPassword(DBProperties.password());
+        src.setURL(url);
+        src.setUser(user);
+        src.setPassword(pass);
 
         try {
             src.setUseCompression(true);
@@ -42,7 +49,16 @@ public class JDBIConnect {
         jdbi = Jdbi.create(src);
     }
 
+
     public static void main(String[] args) {
+        System.out.println("HOST: " + DBProperties.host());
+        System.out.println("PORT: " + DBProperties.port());
+        System.out.println("USER: " + DBProperties.username());
+        System.out.println("PASS: " + DBProperties.password());
+        System.out.println("DBNAME: " + DBProperties.dbname());
+        System.out.println("OPTION: " + DBProperties.option());
+
         Jdbi j = get();
     }
+
 }

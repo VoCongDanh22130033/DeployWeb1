@@ -1,7 +1,7 @@
 # Maven Wrapper
 !.mvn/wrapper/maven-wrapper.jar
 
-# Chỉ giữ lại target/web.war, còn lại trong target/ sẽ bị bỏ qua
+# Bỏ qua tất cả target/ nhưng giữ lại web.war
 target/
 !target/web.war
 
