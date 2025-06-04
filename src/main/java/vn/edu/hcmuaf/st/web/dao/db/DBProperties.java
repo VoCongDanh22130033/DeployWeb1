@@ -38,3 +38,4 @@ public class DBProperties {
         return "useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC";
     }
 }
+
