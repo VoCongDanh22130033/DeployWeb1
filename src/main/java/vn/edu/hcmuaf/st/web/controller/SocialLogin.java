@@ -6,12 +6,11 @@ import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.fluent.Form;
 import org.apache.http.client.fluent.Request;
 import org.mindrot.jbcrypt.BCrypt;
-import vn.edu.hcmuaf.st.web.entity.GoogleAccount;
 import vn.edu.hcmuaf.st.web.constant.Iconstant;
+import vn.edu.hcmuaf.st.web.entity.GoogleAccount;
 
 import java.io.IOException;
 import java.security.SecureRandom;
-import java.util.Random;
 
 public class SocialLogin {
     public static String getToken(String code) throws ClientProtocolException, IOException {

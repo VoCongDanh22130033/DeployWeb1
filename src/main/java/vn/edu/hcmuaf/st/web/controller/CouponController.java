@@ -1,11 +1,13 @@
 package vn.edu.hcmuaf.st.web.controller;
 
+import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.WebServlet;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 import vn.edu.hcmuaf.st.web.service.CouponService;
 import vn.edu.hcmuaf.st.web.service.CouponService.CouponResult;
 
-import jakarta.servlet.ServletException;
-import jakarta.servlet.annotation.WebServlet;
-import jakarta.servlet.http.*;
 import java.io.IOException;
 
 @WebServlet(name = "CouponController", urlPatterns = {"/apply-coupon"})

@@ -2,10 +2,7 @@ package vn.edu.hcmuaf.st.web.dao;
 
 import org.jdbi.v3.core.Jdbi;
 import vn.edu.hcmuaf.st.web.dao.db.JDBIConnect;
-import vn.edu.hcmuaf.st.web.entity.Order;
 import vn.edu.hcmuaf.st.web.entity.OrderDetail;
-import vn.edu.hcmuaf.st.web.entity.Product;
-import vn.edu.hcmuaf.st.web.entity.ProductVariant;
 
 import java.util.List;
 

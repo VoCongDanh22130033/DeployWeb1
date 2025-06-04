@@ -1,12 +1,11 @@
 package vn.edu.hcmuaf.st.web.service;
 
-import org.mindrot.jbcrypt.BCrypt;
-import vn.edu.hcmuaf.st.web.controller.SocialLogin;
-import vn.edu.hcmuaf.st.web.dao.AccountRepository;
-
 import jakarta.mail.*;
 import jakarta.mail.internet.InternetAddress;
 import jakarta.mail.internet.MimeMessage;
+import org.mindrot.jbcrypt.BCrypt;
+import vn.edu.hcmuaf.st.web.controller.SocialLogin;
+import vn.edu.hcmuaf.st.web.dao.AccountRepository;
 import vn.edu.hcmuaf.st.web.entity.GoogleAccount;
 import vn.edu.hcmuaf.st.web.entity.Role;
 import vn.edu.hcmuaf.st.web.entity.User;
@@ -82,8 +81,6 @@ public class AccountService {
     public User getUserByUsernameAndAddress(String email) {
         return accountRepository.getUserByEmailAndAddress(email);  // Gọi phương thức từ DAO
     }
-
-
 
     // đăng nhập google
     public GoogleAccount handleGoogleLogin(String code) throws Exception {

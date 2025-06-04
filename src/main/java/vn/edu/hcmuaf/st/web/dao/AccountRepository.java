@@ -4,7 +4,10 @@ import org.jdbi.v3.core.Jdbi;
 import org.jdbi.v3.core.statement.Query;
 import org.mindrot.jbcrypt.BCrypt;
 import vn.edu.hcmuaf.st.web.dao.db.JDBIConnect;
-import vn.edu.hcmuaf.st.web.entity.*;
+import vn.edu.hcmuaf.st.web.entity.Address;
+import vn.edu.hcmuaf.st.web.entity.GoogleAccount;
+import vn.edu.hcmuaf.st.web.entity.Role;
+import vn.edu.hcmuaf.st.web.entity.User;
 import vn.edu.hcmuaf.st.web.service.AccountService;
 
 import java.sql.Date;
@@ -76,16 +79,16 @@ public class AccountRepository {
 
     public User getUserByEmailAndAddress(String email) {
         String query = """
-                SELECT 
-                    u.idUser AS u_idUser, u.fullName AS u_fullName, u.password AS u_password, 
-                    u.username AS u_username, u.email AS u_email, u.phoneNumber AS u_phoneNumber, 
-                    u.birthDate AS u_birthDate,
-                    a.idAddress AS a_idAddress, a.address AS a_address, a.ward AS a_ward, 
-                    a.district AS a_district, a.province AS a_province, a.isDefault AS a_isDefault
-                FROM users u
-                JOIN address a ON u.idUser = a.idUser
-                WHERE u.email = ?
-            """;
+            SELECT 
+                u.idUser AS u_idUser, u.fullName AS u_fullName, u.password AS u_password, 
+                u.username AS u_username, u.email AS u_email, u.phoneNumber AS u_phoneNumber, 
+                u.birthDate AS u_birthDate,
+                a.idAddress AS a_idAddress, a.address AS a_address, a.ward AS a_ward, 
+                a.district AS a_district, a.province AS a_province, a.isDefault AS a_isDefault
+            FROM users u
+            LEFT JOIN address a ON u.idUser = a.idUser
+            WHERE u.email = ?
+        """;
 
         return jdbi.withHandle(handle ->
                 handle.createQuery(query)
@@ -106,18 +109,21 @@ public class AccountRepository {
                                 user.setBirthDate(sdf.format(birthDate));
                             }
 
-                            // Tạo Address object
-                            Address address = new Address(
-                                    rs.getInt("a_idAddress"),
-                                    user,
-                                    rs.getString("a_address"),
-                                    rs.getString("a_ward"),
-                                    rs.getString("a_district"),
-                                    rs.getString("a_province"),
-                                    rs.getBoolean("a_isDefault")
-                            );
+                            // Chỉ tạo Address nếu có address_id (nghĩa là user có địa chỉ)
+                            Object addressId = rs.getObject("a_idAddress");
+                            if (addressId != null) {
+                                Address address = new Address(
+                                        rs.getInt("a_idAddress"),
+                                        user,
+                                        rs.getString("a_address"),
+                                        rs.getString("a_ward"),
+                                        rs.getString("a_district"),
+                                        rs.getString("a_province"),
+                                        rs.getBoolean("a_isDefault")
+                                );
+                                user.setAddress(address);
+                            }
 
-                            user.setAddress(address);
                             return user;
                         }).findOne().orElse(null)
         );

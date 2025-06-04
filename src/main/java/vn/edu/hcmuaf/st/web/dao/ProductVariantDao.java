@@ -6,10 +6,8 @@ import vn.edu.hcmuaf.st.web.entity.Color;
 import vn.edu.hcmuaf.st.web.entity.ProductVariant;
 import vn.edu.hcmuaf.st.web.entity.Size;
 
-
 import java.util.LinkedHashMap;
 import java.util.List;
-import java.util.Optional;
 
 public class ProductVariantDao {
 

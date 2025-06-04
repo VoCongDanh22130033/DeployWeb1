@@ -3,9 +3,7 @@ package vn.edu.hcmuaf.st.web.service;
 import vn.edu.hcmuaf.st.web.dao.ProductVariantDao;
 import vn.edu.hcmuaf.st.web.entity.ProductVariant;
 
-
 import java.util.List;
-import java.util.Optional;
 
 public class ProductVariantService {
 

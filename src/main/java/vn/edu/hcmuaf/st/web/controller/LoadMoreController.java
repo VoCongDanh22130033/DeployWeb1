@@ -11,9 +11,7 @@ import vn.edu.hcmuaf.st.web.service.ProductService;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 @WebServlet(name = "LoadMoreController", urlPatterns = "/loadmore")
 public class LoadMoreController extends HttpServlet {

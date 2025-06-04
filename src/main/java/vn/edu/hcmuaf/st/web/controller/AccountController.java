@@ -3,9 +3,10 @@ package vn.edu.hcmuaf.st.web.controller;
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
-import jakarta.servlet.http.*;
-
-
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 import vn.edu.hcmuaf.st.web.entity.Address;
 import vn.edu.hcmuaf.st.web.entity.GoogleAccount;
 import vn.edu.hcmuaf.st.web.entity.User;
@@ -13,7 +14,6 @@ import vn.edu.hcmuaf.st.web.service.AccountService;
 
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
-
 import java.text.SimpleDateFormat;
 import java.util.Random;
 
@@ -327,6 +327,38 @@ public class AccountController extends HttpServlet {
         }
     }
 
+    // Đăng nhập Bằng gg
+//    private void handleGoogleLogin(HttpServletRequest request, HttpServletResponse response) throws IOException {
+//        try {
+//            HttpSession session = request.getSession();
+//            GoogleAccount googleAccount = (GoogleAccount) session.getAttribute("googleAccount");
+//
+//            // Nếu đã đăng nhập, chuyển hướng về trang home thay vì đăng nhập lại
+//            if (googleAccount != null) {
+//                response.sendRedirect(request.getContextPath() + "/home");
+//                return;
+//            }
+//
+//            // Lấy mã code từ request
+//            String code = request.getParameter("code");
+//            if (code == null || code.isEmpty()) {
+//                response.sendRedirect(request.getContextPath() + "/view/view-account/signin.jsp?error=missing_code");
+//                return;
+//            }
+//
+//            // Gọi service để xử lý đăng nhập Google
+//            googleAccount = accountService.handleGoogleLogin(code);
+//
+//            // Lưu vào session
+//            session.setAttribute("googleAccount", googleAccount);
+//
+//            // Chuyển hướng đến trang home sau khi đăng nhập thành công
+//            response.sendRedirect(request.getContextPath() + "/home");
+//
+//        } catch (Exception e) {
+//            response.sendRedirect(request.getContextPath() + "/view/view-account/signin.jsp?error=true");
+//        }
+//    }
     private void handleGoogleLogin(HttpServletRequest request, HttpServletResponse response) throws IOException {
         try {
             HttpSession session = request.getSession();
