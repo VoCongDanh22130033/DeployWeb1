@@ -1,32 +1,13 @@
 version: '3.8'
 
 services:
-  db:
-    image: mysql:8.0
-    restart: always
-    environment:
-      MYSQL_ROOT_PASSWORD: qggFeXDcMNWFCTRBLNMOdfuzzjqbELTR
-      MYSQL_DATABASE: railway
-      MYSQL_USER: root
-      MYSQL_PASSWORD: qggFeXDcMNWFCTRBLNMOdfuzzjqbELTR
-    ports:
-      - "3306:3306"
-    volumes:
-      - db_data:/var/lib/mysql
-      - ./mysql-init:/docker-entrypoint-initdb.d
-
   app:
     build: .
     ports:
       - "8080:8080"
-    depends_on:
-      - db
     environment:
-      DB_HOST: db
-      DB_PORT: 3306
+      DB_HOST: mysql.railway.internal
+      DB_PORT: 36925
       DB_USERNAME: root
       DB_PASSWORD: qggFeXDcMNWFCTRBLNMOdfuzzjqbELTR
       DB_NAME: railway
-
-volumes:
-  db_data:

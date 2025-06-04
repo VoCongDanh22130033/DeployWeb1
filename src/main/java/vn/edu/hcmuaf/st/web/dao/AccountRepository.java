@@ -249,7 +249,7 @@ public class AccountRepository {
                         .bind("fullName", fullName)
                         .bind("phoneNumber", phoneNumber)
                         .bind("email", email)
-                        .bind("birthDate", new java.sql.Date(birthDate.getTime()))
+                        .bind("birthDate", new Date(birthDate.getTime()))
                         .execute();
 
                 int addressRows = handle.createUpdate(updateAddressSql)

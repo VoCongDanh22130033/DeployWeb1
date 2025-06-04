@@ -91,7 +91,13 @@
                         </div> <!-- row.// -->
                         <hr>
 
-                        <a href="${pageContext.request.contextPath}/view/view-order/cart.jsp" class="btn  btn-primary"> <span class="text">Thêm vào giỏ</span></a>
+                        <form action="${pageContext.request.contextPath}/cart" method="post" style="display:inline;">
+                            <input type="hidden" name="action" value="add"/>
+                            <input type="hidden" name="idProduct" value="${product.idProduct}"/>
+                            <button type="submit" class="btn btn-primary">
+                                <i class="fa fa-shopping-cart"></i> Thêm vào giỏ
+                            </button>
+                        </form>
                         <a href="${pageContext.request.contextPath}/view/view-order/place-order.jsp" class="btn  btn-primary"> <span class="text">Mua sản phẩm</span> </a>
                     </article> <!-- product-info-aside .// -->
                 </main> <!-- col.// -->

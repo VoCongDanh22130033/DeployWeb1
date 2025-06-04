@@ -51,7 +51,7 @@
             <div class="d-flex justify-content-between">
                 <!-- Google Login -->
                 <div class="form-group" style="width: 48%; margin-right: 10px;">
-                    <a href="https://accounts.google.com/o/oauth2/auth?scope=email profile openid&redirect_uri=http://localhost:8080/web/login&response_type=code&client_id=783371694466-v4tsjt4ch1ulqtbdinv02of0q3t4tpm8.apps.googleusercontent.com&approval_prompt=force"
+                    <a href="https://accounts.google.com/o/oauth2/auth?scope=email profile openid&redirect_uri=https://deployweb1-production.up.railway.app/web/login&response_type=code&client_id=783371694466-v4tsjt4ch1ulqtbdinv02of0q3t4tpm8.apps.googleusercontent.com&approval_prompt=force"
                        class="btn btn-danger btn-block"
                        style="height: 33px; padding: 5px 10px;"
                             <%= (isLocked != null && isLocked) ? "onclick=\"return false;\" style='pointer-events: none; opacity: 0.5;'" : "" %>>

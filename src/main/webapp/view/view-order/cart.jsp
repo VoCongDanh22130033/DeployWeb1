@@ -1,19 +1,25 @@
+
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 
-<%@ include file="/view/view-index/header.jsp" %>
-
-<html>
-
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+</head>
 <style>
     .form-control:focus {
         box-shadow: none;
         border-color: #ced4da; /* hoặc bất kỳ màu border mặc định nào */
     }
 </style>
-
+<body>
+<%@ include file="/view/view-index/header.jsp" %>
 <section class="section-content padding-y bg">
     <div class="container">
 
@@ -57,7 +63,7 @@
                                         <figcaption class="info">
                                             <a href="#" class="title text-dark">${item.productTitle}</a>
                                             <p>${item.idVariant}</p>
-<%--                                            <p class="text-muted small">Matrix: 25 Mpx <br> Brand: Canon</p>--%>
+                                                <%--                                            <p class="text-muted small">Matrix: 25 Mpx <br> Brand: Canon</p>--%>
                                         </figcaption>
                                     </figure>
                                 </td>
@@ -139,9 +145,9 @@
                             <div class="form-group">
                                 <label for="discountCode">Mã giảm giá</label>
                                 <div class="input-group">
-                                    <input type="text" class="form-control" id="discountCode" name="discountCode" placeholder="Nhập mã...">
+                                    <input type="text" class="form-control" id="discountCode" name="code" placeholder="Nhập mã...">
                                     <div class="input-group-append">
-                                        <button class="btn btn-outline-primary" type="submit">Áp dụng</button>
+                                        <button id="applyCoupon" class="btn btn-outline-primary" type="submit">Áp dụng</button>
                                     </div>
                                 </div>
                             </div>
@@ -200,7 +206,6 @@
 
     </div>
 </section>
-
 <script>
     document.querySelectorAll('.btn-update-quantity').forEach(button => {
         button.addEventListener('click', function () {
@@ -228,6 +233,7 @@
                 headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
                 body: "idVariant="+idVariant+"&quantity="+quantity
             })
+                //
                 .then(res => res.json())
                 .then(data => {
                     if (data.totalPrice) {
@@ -258,7 +264,6 @@
         }
     });
 </script>
-
-
-<%@ include file="/view/view-index/footer.jsp" %>
+<script src="${pageContext.request.contextPath}/js/coupon.js"></script>
+</body>
 </html>

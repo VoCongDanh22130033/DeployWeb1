@@ -61,5 +61,12 @@
                 <span class="menu-title">Quản Lý Nhân Viên</span>
             </a>
         </li>
+        <!-- Nút đăng xuất -->
+        <li class="menu-item logout-item">
+            <a href="${pageContext.request.contextPath}/logout" class="logout-link">
+                <span class="menu-icon"><i class="fa fa-sign-out-alt"></i></span>
+                <span class="menu-title">Đăng xuất</span>
+            </a>
+        </li>
     </ul>
 </nav>
