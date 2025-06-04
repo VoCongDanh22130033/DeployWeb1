@@ -3,11 +3,10 @@ package vn.edu.hcmuaf.st.web.constant;
 public class Iconstant {
 
     public static final String GOOGLE_CLIENT_ID = "783371694466-v4tsjt4ch1ulqtbdinv02of0q3t4tpm8.apps.googleusercontent.com";
-
-
+    
     public static final String GOOGLE_CLIENT_SECRET = "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";
 
-    public static final String GOOGLE_REDIRECT_URI = "http://localhost:8080/web/login";
+    public static final String GOOGLE_REDIRECT_URI = "https://deployweb1-production.up.railway.app/web/login";
 
     public static final String GOOGLE_GRANT_TYPE = "authorization_code";
 
