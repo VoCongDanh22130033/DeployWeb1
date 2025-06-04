@@ -327,17 +327,9 @@ public class AccountController extends HttpServlet {
         }
     }
 
-    // Đăng nhập Bằng gg
 //    private void handleGoogleLogin(HttpServletRequest request, HttpServletResponse response) throws IOException {
 //        try {
 //            HttpSession session = request.getSession();
-//            GoogleAccount googleAccount = (GoogleAccount) session.getAttribute("googleAccount");
-//
-//            // Nếu đã đăng nhập, chuyển hướng về trang home thay vì đăng nhập lại
-//            if (googleAccount != null) {
-//                response.sendRedirect(request.getContextPath() + "/home");
-//                return;
-//            }
 //
 //            // Lấy mã code từ request
 //            String code = request.getParameter("code");
@@ -346,59 +338,72 @@ public class AccountController extends HttpServlet {
 //                return;
 //            }
 //
-//            // Gọi service để xử lý đăng nhập Google
-//            googleAccount = accountService.handleGoogleLogin(code);
+//            // Gọi service để xử lý đăng nhập Google, trả về GoogleAccount
+//            GoogleAccount googleAccount = accountService.handleGoogleLogin(code);
 //
-//            // Lưu vào session
-//            session.setAttribute("googleAccount", googleAccount);
+//            if (googleAccount == null) {
+//                response.sendRedirect(request.getContextPath() + "/view/view-account/signin.jsp?error=google_login_failed");
+//                return;
+//            }
 //
-//            // Chuyển hướng đến trang home sau khi đăng nhập thành công
+//            // Lấy hoặc tạo User tương ứng dựa trên email googleAccount
+//            User user = accountService.getUserByEmail(googleAccount.getEmail());
+//            if (user == null) {
+//                // Nếu user chưa có trong db, có thể tạo mới hoặc báo lỗi
+//                user = accountService.createUserFromGoogleAccount(googleAccount);
+//            }
+//
+//            // Lưu User vào session (key "user"), dùng chung cho các phần khác
+//            session.setAttribute("user", user);
+//
+//            // Xóa googleAccount nếu không cần thiết nữa hoặc cũng lưu nếu bạn muốn
+//            session.removeAttribute("googleAccount");
+//
+//            // Chuyển hướng đến trang home
 //            response.sendRedirect(request.getContextPath() + "/home");
 //
 //        } catch (Exception e) {
+//            e.printStackTrace();
 //            response.sendRedirect(request.getContextPath() + "/view/view-account/signin.jsp?error=true");
 //        }
 //    }
-    private void handleGoogleLogin(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        try {
-            HttpSession session = request.getSession();
+private void handleGoogleLogin(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    try {
+        HttpSession session = request.getSession();
 
-            // Lấy mã code từ request
-            String code = request.getParameter("code");
-            if (code == null || code.isEmpty()) {
-                response.sendRedirect(request.getContextPath() + "/view/view-account/signin.jsp?error=missing_code");
-                return;
-            }
-
-            // Gọi service để xử lý đăng nhập Google, trả về GoogleAccount
-            GoogleAccount googleAccount = accountService.handleGoogleLogin(code);
-
-            if (googleAccount == null) {
-                response.sendRedirect(request.getContextPath() + "/view/view-account/signin.jsp?error=google_login_failed");
-                return;
-            }
-
-            // Lấy hoặc tạo User tương ứng dựa trên email googleAccount
-            User user = accountService.getUserByEmail(googleAccount.getEmail());
-            if (user == null) {
-                // Nếu user chưa có trong db, có thể tạo mới hoặc báo lỗi
-                user = accountService.createUserFromGoogleAccount(googleAccount);
-            }
-
-            // Lưu User vào session (key "user"), dùng chung cho các phần khác
-            session.setAttribute("user", user);
-
-            // Xóa googleAccount nếu không cần thiết nữa hoặc cũng lưu nếu bạn muốn
-            session.removeAttribute("googleAccount");
-
-            // Chuyển hướng đến trang home
-            response.sendRedirect(request.getContextPath() + "/home");
-
-        } catch (Exception e) {
-            e.printStackTrace();
-            response.sendRedirect(request.getContextPath() + "/view/view-account/signin.jsp?error=true");
+        String code = request.getParameter("code");
+        System.out.println("Code nhận từ Google: " + code); // log A
+        if (code == null || code.isEmpty()) {
+            System.out.println("Code rỗng hoặc null");
+            response.sendRedirect(request.getContextPath() + "/view/view-account/signin.jsp?error=missing_code");
+            return;
         }
+
+        GoogleAccount googleAccount = accountService.handleGoogleLogin(code);
+        System.out.println("Google Account: " + googleAccount); // log B
+
+        if (googleAccount == null) {
+            System.out.println("Google login thất bại, tài khoản null");
+            response.sendRedirect(request.getContextPath() + "/view/view-account/signin.jsp?error=google_login_failed");
+            return;
+        }
+
+        User user = accountService.getUserByEmail(googleAccount.getEmail());
+        if (user == null) {
+            System.out.println("User chưa tồn tại, tạo mới"); // log C
+            user = accountService.createUserFromGoogleAccount(googleAccount);
+        }
+
+        session.setAttribute("user", user);
+        System.out.println("Đăng nhập thành công với user: " + user.getEmail()); // log D
+        response.sendRedirect(request.getContextPath() + "/home");
+
+    } catch (Exception e) {
+        e.printStackTrace();
+        System.out.println("Lỗi trong handleGoogleLogin: " + e.getMessage());
+        response.sendRedirect(request.getContextPath() + "/view/view-account/signin.jsp?error=true");
     }
+}
 
     // Đăng Xuất Bằng Tk
     private void handleLogout(HttpServletRequest request, HttpServletResponse response)
